@@ -5,8 +5,8 @@ ADD myinit.sh /
 RUN chmod +x /myinit.sh
 CMD ["/myinit.sh"]
 
-RUN apt update && apt upgrade -y \
-	&& apt install -y tmux aptitude nano mc firefox xfce4-terminal less \
+RUN apt-get update && apt-get upgrade -y \
+	&& apt-get install -y tmux aptitude nano mc firefox xfce4-terminal less \
  rsync \
  dnsutils \
  xfce4 \
@@ -15,12 +15,14 @@ RUN apt update && apt upgrade -y \
  xfwm4-themes \
  shiki-colors-xfwm-theme \
  keepassx \
- firefox-esr \
- firefox-esr-l10n-de \
- chromium \
+ firefox \
+ firefox-locale-de \
+ firefox-locale-en \
+ chromium-browser \
  evolution \
  libreoffice \
  libreoffice-l10n-de \
+ libreoffice-l10n-en \
  hunspell-de-de \
  evince \
  geany \
