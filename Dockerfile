@@ -6,7 +6,7 @@ RUN chmod +x /myinit.sh
 CMD ["/myinit.sh"]
 
 RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install -y tmux aptitude nano mc firefox xfce4-terminal less \
+	&& apt-get install -y tmux aptitude nano mc firefox less \
  rsync \
  dnsutils \
  xfce4 \
@@ -36,8 +36,8 @@ RUN apt-get update && apt-get upgrade -y \
  rapidsvn \
  doublecmd-qt \
  x2goclient \
- fonts-hack-ttf \
-	&& apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ fonts-hack-ttf #\
+#	&& apt-get clean \
+#    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
 	
