@@ -22,7 +22,6 @@ RUN apt-get update && apt-get upgrade -y \
  evolution \
  libreoffice \
  libreoffice-l10n-de \
- libreoffice-l10n-en \
  hunspell-de-de \
  evince \
  geany \
