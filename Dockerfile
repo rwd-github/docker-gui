@@ -2,6 +2,7 @@ FROM rwd1/ubuntu-systemd:latest
 MAINTAINER RWd <rwd-github@gmx.net>
 
 ADD myinit.sh /
+RUN chmod +x /myinit.sh
 CMD ["/myinit.sh"]
 
 RUN apt update && apt upgrade -y \
