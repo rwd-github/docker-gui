@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y tmux aptitude nano mc firefox less \
  rsync \
  dnsutils \
+ net-tools \
  xfce4 \
  xfce4-goodies \
  xfce4-terminal \
