@@ -12,6 +12,8 @@ RUN apt-get update && apt-get upgrade -y \
 	less \
 	rsync \
 	sudo \
+	subversion \
+	git git-gui \
 	firefox \
 	xfce4 \
 	xfce4-goodies \
