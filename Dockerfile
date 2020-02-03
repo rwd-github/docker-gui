@@ -1,9 +1,5 @@
-FROM rwd1/ubuntu-systemd:latest
+FROM rwd1/ubuntu-systemd:latest as sysbase
 MAINTAINER RWd <rwd-github@gmx.net>
-
-ADD myinit.sh /
-RUN chmod +x /myinit.sh
-CMD ["/myinit.sh"]
 
 RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y tmux aptitude nano mc firefox less \
@@ -29,6 +25,7 @@ RUN apt-get update && apt-get upgrade -y \
  geany-plugins \
  ecryptfs-utils \
  xrdp \
+ xorgxrdp \
  system-config-printer \
  gimp \
  gimp-help-de \
@@ -37,8 +34,14 @@ RUN apt-get update && apt-get upgrade -y \
  rapidsvn \
  doublecmd-qt \
  x2goclient \
- fonts-hack-ttf #\
+ fonts-hack-ttf
 #	&& apt-get clean \
 #    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
+
+VOLUME [ "/sys/fs/cgroup" ]
 	
+FROM sysbase
+ADD myinit.sh /
+RUN chmod +x /myinit.sh
+#CMD ["/myinit.sh"]
+ENTRYPOINT ["/myinit.sh"]
