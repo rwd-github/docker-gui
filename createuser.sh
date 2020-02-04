@@ -6,19 +6,24 @@ set -o errexit -o pipefail -o nounset
 echo "===  createuser start"
 for myuser in $(ls /home); do
 	echo "---  add user ${myuser}"
-	mypass=$(cat /home/${myuser}/.mypass)
+	if [ ! $(id -u ${myuser}) ]; then
+		mypass=$(cat /home/${myuser}/.mypass)
 
-	adduser --disabled-password --no-create-home --gecos "" ${myuser}
-	#echo ${myuser}:${mypass} | chpasswd
-	usermod -p "${mypass}" ${myuser}
-	usermod -a -G adm ${myuser}
-	usermod -a -G sudo ${myuser}
+		adduser --disabled-password --no-create-home --gecos "" ${myuser}
+		#echo ${myuser}:${mypass} | chpasswd
+		usermod -p "${mypass}" ${myuser}
+		usermod -a -G adm ${myuser}
+		usermod -a -G sudo ${myuser}
 
-	cd /home/${myuser}
-	chown -R ${myuser}:${myuser} .
-	chmod -R go=u,go-w .
-	chmod go= .
+		pushd /home/${myuser}
+		chown -R ${myuser}:${myuser} .
+		chmod -R go=u,go-w .
+		chmod go= .
+		popd
+	else
+		echo "  user already exists."
+	fi
 done
 echo "===  createuser stop"
 
-rm $0
+#rm $0
