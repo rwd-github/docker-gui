@@ -45,11 +45,13 @@ EXPOSE 3389/tcp
 
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /etc/supervisor/conf.d/
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+COPY supervisord.conf /root/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/root/supervisord.conf"]
 
 
 FROM sysbase
-ADD createuser.sh /etc/rc.local
-RUN chmod +x /etc/rc.local
+ADD createuser.sh /root/createuser.sh
+RUN chmod +x /root/createuser.sh
+ADD init.sh /root/init.sh
+RUN chmod +x /root/init.sh
 
