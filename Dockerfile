@@ -21,6 +21,7 @@ RUN apt-get update && apt-get upgrade -y \
 	net-tools \
 	less \
 	sudo \
+	htop \
 	supervisor \
 	xfce4 \
 	xfce4-goodies \
