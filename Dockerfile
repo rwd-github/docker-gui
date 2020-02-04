@@ -33,6 +33,8 @@ RUN apt-get update && apt-get upgrade -y \
 	firefox \
 	firefox-locale-de \
 	firefox-locale-en \
+	remmina \
+	freerdp2-x11 \
 	fonts-hack-ttf
 
 RUN unlink /etc/localtime \
