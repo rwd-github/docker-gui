@@ -14,4 +14,10 @@ RUN apt-get update && apt-get upgrade -y \
 	vlc \
 	rapidsvn \
 	doublecmd-qt \
-	x2goclient
+	x2goclient \
+	unattended-upgrades
+
+RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades
+
+COPY supervisord.conf.part /root/supervisord.conf.part
+RUN cat /root/supervisord.conf.part >> /etc/supervisor/conf.d/supervisord.conf

@@ -27,13 +27,16 @@ RUN apt-get update && apt-get upgrade -y \
 	xfce4-terminal \
 	xfwm4-themes \
 	shiki-colors-xfwm-theme \
-	chromium-browser \
-	evince \
 	xrdp \
 	xorgxrdp \
+	firefox \
+	firefox-locale-de \
+	firefox-locale-en \
 	fonts-hack-ttf
 
-#VOLUME [ "/sys/fs/cgroup", "/home" ]
+RUN unlink /etc/localtime \
+	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
 

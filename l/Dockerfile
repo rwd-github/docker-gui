@@ -7,9 +7,10 @@ RUN apt-get update && apt-get upgrade -y \
 	openssh-server \
 	git git-gui \
 	keepassx \
-	firefox \
-	firefox-locale-de \
-	firefox-locale-en \
+	chromium-browser \
+	evince \
 	geany \
 	geany-plugins \
 	ecryptfs-utils
+
+EXPOSE 22/tcp
