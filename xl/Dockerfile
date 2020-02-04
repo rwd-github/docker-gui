@@ -15,6 +15,8 @@ RUN apt-get update && apt-get upgrade -y \
 	rapidsvn \
 	doublecmd-qt \
 	x2goclient \
+	gnome-mahjongg \
+	gnome-mines \
 	unattended-upgrades
 
 RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades
