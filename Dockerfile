@@ -1,5 +1,15 @@
-FROM rwd1/ubuntu-systemd:latest as sysbase
+FROM ubuntu:18.04 as sysbase
 MAINTAINER RWd <rwd-github@gmx.net>
+
+# Set the locale
+RUN apt update \
+	&& apt upgrade -y \
+	&& apt install -y locales \
+	&& locale-gen de_DE.UTF-8
+ENV LANG de_DE.UTF-8
+ENV LANGUAGE de_DE:de
+ENV LC_ALL de_DE.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y \
@@ -10,58 +20,30 @@ RUN apt-get update && apt-get upgrade -y \
 	dnsutils \
 	net-tools \
 	less \
-	rsync \
 	sudo \
-	subversion \
-	git git-gui \
-	firefox \
+	supervisor \
 	xfce4 \
 	xfce4-goodies \
 	xfce4-terminal \
 	xfwm4-themes \
 	shiki-colors-xfwm-theme \
-	keepassx \
-	firefox \
-	firefox-locale-de \
-	firefox-locale-en \
 	chromium-browser \
-	evolution \
-	libreoffice \
-	libreoffice-l10n-de \
-	hunspell-de-de \
 	evince \
-	geany \
-	geany-plugins \
-	ecryptfs-utils \
 	xrdp \
 	xorgxrdp \
-	gimp \
-	gimp-help-de \
-	zenity \
-	vlc \
-	rapidsvn \
-	doublecmd-qt \
-	x2goclient \
 	fonts-hack-ttf
 
-#	system-config-printer \
-
-VOLUME [ "/sys/fs/cgroup", "/home" ]
+#VOLUME [ "/sys/fs/cgroup", "/home" ]
+VOLUME [ "/home" ]
 EXPOSE 3389/tcp
-	
+
+RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /etc/supervisor/conf.d/
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+
 FROM sysbase
 ADD createuser.sh /etc/rc.local
 RUN chmod +x /etc/rc.local
 
-RUN cd /lib/systemd/system/sysinit.target.wants/ \
-    && ls | grep -v systemd-tmpfiles-setup | xargs rm -f $1
-
-#RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
-#    /etc/systemd/system/*.wants/* \
-#    /lib/systemd/system/local-fs.target.wants/* \
-#    /lib/systemd/system/sockets.target.wants/*udev* \
-#    /lib/systemd/system/sockets.target.wants/*initctl* \
-#    /lib/systemd/system/basic.target.wants/* \
-#    /lib/systemd/system/anaconda.target.wants/* \
-#    /lib/systemd/system/plymouth* \
-#    /lib/systemd/system/systemd-update-utmp*
