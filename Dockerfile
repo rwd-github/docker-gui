@@ -33,6 +33,7 @@ RUN apt-get update && apt-get upgrade -y \
 	firefox \
 	firefox-locale-de \
 	firefox-locale-en \
+	thunderbird \
 	remmina \
 	freerdp2-x11 \
 	fonts-hack-ttf
