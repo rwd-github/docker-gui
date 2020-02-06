@@ -1,5 +1,4 @@
 FROM rwd1/gui-l:latest
-MAINTAINER RWd <rwd-github@gmx.net>
 
 RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y \

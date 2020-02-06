@@ -1,5 +1,4 @@
 FROM rwd1/gui:latest
-MAINTAINER RWd <rwd-github@gmx.net>
 
 RUN apt-get update && apt-get upgrade -y \
 	&& apt-get install -y \
@@ -7,7 +6,6 @@ RUN apt-get update && apt-get upgrade -y \
 	openssh-server \
 	git git-gui \
 	keepassx \
-	chromium-browser \
 	evince \
 	geany \
 	geany-plugins \

@@ -1,5 +1,4 @@
 FROM ubuntu:18.04 as sysbase
-MAINTAINER RWd <rwd-github@gmx.net>
 
 # Set the locale
 RUN apt update \
@@ -35,12 +34,17 @@ RUN apt-get update && apt-get upgrade -y \
 	firefox \
 	firefox-locale-de \
 	firefox-locale-en \
+	chromium-browser \
 	remmina \
 	freerdp2-x11 \
 	fonts-hack-ttf
 
 RUN unlink /etc/localtime \
 	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+RUN mv /usr/bin/chromium-browser /usr/bin/chromium-browser.original
+ADD chromium-browser /usr/bin/chromium-browser
+RUN chmod +x /usr/bin/chromium-browser
 
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
