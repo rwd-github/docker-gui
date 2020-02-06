@@ -21,6 +21,7 @@ RUN apt-get update && apt-get upgrade -y \
 	net-tools \
 	iputils-ping \
 	less \
+	telnet \
 	sudo \
 	htop \
 	supervisor \
