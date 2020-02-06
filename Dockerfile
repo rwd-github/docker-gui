@@ -19,6 +19,7 @@ RUN apt-get update && apt-get upgrade -y \
 	mc \
 	dnsutils \
 	net-tools \
+	iputils-ping \
 	less \
 	sudo \
 	htop \
