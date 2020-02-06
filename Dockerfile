@@ -25,17 +25,16 @@ RUN apt-get update && apt-get upgrade -y \
 	sudo \
 	htop \
 	supervisor \
+	xorgxrdp \
+	xrdp \
 	xfce4 \
 	xfce4-goodies \
 	xfce4-terminal \
 	xfwm4-themes \
 	shiki-colors-xfwm-theme \
-	xrdp \
-	xorgxrdp \
 	firefox \
 	firefox-locale-de \
 	firefox-locale-en \
-	thunderbird \
 	remmina \
 	freerdp2-x11 \
 	fonts-hack-ttf
