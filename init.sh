@@ -1,7 +1,6 @@
 #!/bin/bash
-set -o errexit -o pipefail -o nounset
-
 rm /etc/rc5.d/*supervisor
+set -o errexit -o pipefail -o nounset
 
 cd /root
 if [ -f "createuser.sh" ]; then
@@ -22,5 +21,5 @@ trap stop_script SIGINT SIGTERM
 while true
 do
     uptime
-    sleep 10
+    sleep 600
 done
