@@ -22,3 +22,6 @@ RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgr
 
 #COPY xl/supervisord.conf.part /root/supervisord.conf.part
 #RUN cat /root/supervisord.conf.part >> /etc/supervisor/conf.d/supervisord.conf
+
+ADD https://go.microsoft.com/fwlink/?LinkID=760868 /root/code.deb
+RUN dpkg -i /root/code.deb

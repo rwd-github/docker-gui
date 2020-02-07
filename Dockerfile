@@ -4,7 +4,7 @@ FROM ubuntu:18.04 as sysbase
 RUN apt update \
 	&& apt upgrade -y \
 	&& apt install -y locales \
-	&& locale-gen de_DE.UTF-8
+	&& locale-gen de_DE.UTF-8 en_US.UTF-8
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
@@ -24,6 +24,8 @@ RUN apt-get update && apt-get upgrade -y \
 	sudo \
 	htop \
 	supervisor \
+	python3-pip \
+	curl \
 	xorgxrdp \
 	xrdp \
 	xfce4 \
