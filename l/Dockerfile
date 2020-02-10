@@ -8,6 +8,7 @@ RUN apt-get install -y \
 	evince \
 	geany \
 	geany-plugins \
-	ecryptfs-utils
+	ecryptfs-utils \
+	&& apt-get clean
 
 EXPOSE 22/tcp

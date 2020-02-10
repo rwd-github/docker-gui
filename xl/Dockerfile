@@ -15,7 +15,8 @@ RUN apt-get install -y \
 	x2goclient \
 	gnome-mahjongg \
 	gnome-mines \
-	unattended-upgrades
+	unattended-upgrades \
+	&& apt-get clean
 
 RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades
 

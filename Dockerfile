@@ -39,7 +39,8 @@ RUN apt-get update && apt-get upgrade -y \
 	chromium-browser \
 	remmina \
 	freerdp2-x11 \
-	fonts-hack-ttf
+	fonts-hack-ttf \
+	&& apt-get clean
 
 RUN unlink /etc/localtime \
 	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
