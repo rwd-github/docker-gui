@@ -1,9 +1,9 @@
 FROM ubuntu:18.04 as sysbase
 
 # Set the locale
-RUN apt update \
-	&& apt upgrade -y \
-	&& apt install -y locales \
+RUN apt-get update \
+	&& apt-get upgrade -y \
+	&& apt-get install -y locales \
 	&& locale-gen de_DE.UTF-8 en_US.UTF-8
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
