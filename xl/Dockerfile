@@ -9,7 +9,6 @@ RUN apt-get install -y \
 	gimp \
 	gimp-help-de \
 	zenity \
-	vlc \
 	rapidsvn \
 	doublecmd-qt \
 	x2goclient \

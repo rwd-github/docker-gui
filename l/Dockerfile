@@ -6,6 +6,7 @@ RUN apt-get install -y \
 	git git-gui \
 	keepassx \
 	evince \
+	vlc \
 	geany \
 	geany-plugins \
 	ecryptfs-utils \
