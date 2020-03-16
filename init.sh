@@ -7,7 +7,7 @@ if [ -f "createuser.sh" ]; then
 	./createuser.sh
 fi
 
-rm /var/run/xrdp/*.pid || True
+rm /var/run/xrdp/*.pid || true
 
 # Start all
 run-parts -a start /etc/rc5.d

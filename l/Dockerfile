@@ -1,6 +1,9 @@
 FROM rwd1/gui:latest
 
 RUN apt-get install -y \
+	libarchive13
+
+RUN apt-get install -y \
 	rsync \
 	openssh-server \
 	git git-gui \
