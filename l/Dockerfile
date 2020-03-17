@@ -1,9 +1,7 @@
 FROM rwd1/gui:latest
 
-RUN apt-get install --fix-missing -y \
-	libarchive13
-
-RUN apt-get install -y \
+RUN apt-get update && apt-get upgrade -y -q \
+	&& apt-get install -y -q \
 	rsync \
 	openssh-server \
 	git git-gui \
