@@ -11,7 +11,7 @@ ENV LC_ALL de_DE.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade -y \
-	&& apt-get install -y \
+	&& apt-get install -y -q \
 	tmux \
 	aptitude \
 	nano \
@@ -55,7 +55,7 @@ EXPOSE 3389/tcp
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /etc/supervisor/conf.d/
 COPY supervisord.conf /root/supervisord.conf
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/root/supervisord.conf"]
+ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
 
 
 FROM sysbase

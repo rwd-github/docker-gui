@@ -4,6 +4,8 @@ set -o errexit -o pipefail -o nounset
 mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 imagetag=gui
+containername=${imagetag}
+#imagetag=rwd1/gui
 stdparams=""
 additionalparams=""
 
@@ -16,7 +18,7 @@ function run {
 	docker run -it --rm ${stdparams} \
 	-v ${mypath}/../home:/home \
 	-p 33890:3389 \
-	--name ${imagetag} --hostname ${imagetag} ${additionalparams} ${imagetag} 
+	--name ${containername} --hostname ${containername} ${additionalparams} ${imagetag} 
 }
 
 
