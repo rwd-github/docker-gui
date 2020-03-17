@@ -1,6 +1,6 @@
 FROM rwd1/gui:latest
 
-RUN apt-get install -y \
+RUN apt-get install --fix-missing -y \
 	libarchive13
 
 RUN apt-get install -y \
