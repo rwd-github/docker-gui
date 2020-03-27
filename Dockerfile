@@ -40,6 +40,8 @@ RUN apt-get update && apt-get upgrade -y \
 	remmina \
 	freerdp2-x11 \
 	fonts-hack-ttf \
+	xterm \
+	clusterssh \
 	&& apt-get clean
 
 RUN unlink /etc/localtime \
