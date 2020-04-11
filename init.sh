@@ -20,6 +20,9 @@ stop_script() {
 # Wait for supervisor to stop script
 trap stop_script SIGINT SIGTERM
 
+rm /usr/bin/chromium-browser
+cp /usr/bin/chromium-browser--no-sandbox /usr/bin/chromium-browser
+
 while true
 do
     uptime
