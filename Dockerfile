@@ -49,7 +49,8 @@ RUN unlink /etc/localtime \
 
 RUN mv /usr/bin/chromium-browser /usr/bin/chromium-browser.original
 ADD chromium-browser /usr/bin/chromium-browser
-RUN chmod +x /usr/bin/chromium-browser
+RUN chmod +x /usr/bin/chromium-browser \
+	&& cp /usr/bin/chromium-browser /usr/bin/chromium-browser--no-sandbox
 
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
