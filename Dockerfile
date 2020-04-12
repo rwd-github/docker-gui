@@ -51,6 +51,7 @@ RUN mv /usr/bin/chromium-browser /usr/bin/chromium-browser.original
 ADD chromium-browser /usr/bin/chromium-browser
 RUN chmod +x /usr/bin/chromium-browser \
 	&& cp /usr/bin/chromium-browser /usr/bin/chromium-browser--no-sandbox
+ADD chromium-nosandbox.desktop /usr/share/xfce4/helpers/
 
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
