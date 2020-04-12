@@ -9,6 +9,9 @@ fi
 
 rm /var/run/xrdp/*.pid || true
 
+rm /usr/bin/chromium-browser
+cp /usr/bin/chromium-browser--no-sandbox /usr/bin/chromium-browser
+
 # Start all
 run-parts -a start /etc/rc5.d
 
