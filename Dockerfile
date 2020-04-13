@@ -42,6 +42,7 @@ RUN apt-get update && apt-get upgrade -y \
 	fonts-hack-ttf \
 	xterm \
 	clusterssh \
+	doublecmd-qt \
 	&& apt-get clean
 
 RUN unlink /etc/localtime \

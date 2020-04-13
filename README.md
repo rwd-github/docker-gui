@@ -8,7 +8,9 @@ docker run -it --rm \
 	rwd1/gui
 
 
-mount dir with one or more homefolder. Create a file ".mypass" with prehashed password. mkpasswd -m sha-512
+mount dir with one or more homefolder. 
+Create a file ".mypass" with prehashed password. 
+mkpasswd -m sha-512
 
 to start chromium in gui-session, set an alias in .bashrc  
 
