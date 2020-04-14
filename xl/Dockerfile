@@ -11,7 +11,6 @@ RUN apt-get update && apt-get upgrade -y -q \
 	gimp-help-de \
 	zenity \
 	rapidsvn \
-	doublecmd-qt \
 	x2goclient \
 	gnome-mahjongg \
 	gnome-mines \
