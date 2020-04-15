@@ -19,8 +19,8 @@ for myuser in $(ls /home); do
 		usermod -a -G sudo ${myuser}
 
 		chown -R ${myuser}:${myuser} .
-		chmod -R go=u,go-w .
-		chmod go= .
+#		chmod -R go=u,go-w .
+#		chmod go= .
 		popd
 	else
 		echo "  user already exists."
