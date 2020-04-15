@@ -22,6 +22,7 @@ RUN apt-get update && apt-get upgrade -y \
 	iputils-ping \
 	less \
 	telnet \
+	rsync \
 	sudo \
 	htop \
 	supervisor \
