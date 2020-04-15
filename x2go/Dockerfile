@@ -8,6 +8,7 @@ RUN apt update \
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
+RUN update-locale LANG=de_DE.utf8
 ENV DEBIAN_FRONTEND noninteractive
 
 
