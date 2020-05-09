@@ -49,6 +49,8 @@ RUN apt-get update && apt-get upgrade -y \
 
 RUN unlink /etc/localtime \
 	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+	
+RUN usermod -a -G ssl-cert xrdp
 
 RUN mv /usr/bin/chromium-browser /usr/bin/chromium-browser.original
 ADD chromium-browser /usr/bin/chromium-browser
