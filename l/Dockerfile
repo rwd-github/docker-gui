@@ -1,4 +1,4 @@
-FROM rwd1/gui:latest
+FROM rwd1/gui:18.04
 
 RUN apt-get update && apt-get upgrade -y -q \
 	&& apt-get install -y -q \
