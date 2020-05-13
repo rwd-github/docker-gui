@@ -3,12 +3,12 @@
 disable_some_daemons(){
 	pushd /etc/rc5.d
 	rm *supervisor
-#	rm *apport
-#	rm *saned
-#	rm *lightdm
-#	rm *gdm3
-#	rm *avahi-daemon
-#	rm *plymouth
+	rm *apport
+	rm *lightdm
+	rm *gdm3
+	rm *avahi-daemon
+	rm *plymouth
+	rm *saned
 	popd
 }
 
