@@ -1,47 +1,20 @@
 #!/bin/bash
 set -o errexit -o pipefail -o nounset
 
-mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+#mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
-imagetag=gui
-containername=${imagetag}
-#imagetag=rwd1/gui
-stdparams=""
-additionalparams=""
+#docker-compose pull
+docker-compose up --build -d
 
-function build {
-	docker system prune
-	docker build ${stdparams} -t ${imagetag} ${mypath}
-}
-
-function run {
-	docker run -it --rm ${stdparams} \
-	-v ${mypath}/../home:/home \
-	-p 33890:3389 \
-	--name ${containername} --hostname ${containername} ${additionalparams} ${imagetag} 
-}
+. ./env
 
 
-case $1 in
-	b)
-	echo "build"
-	build
-	;;
-	r)
-	echo "run"
-	run
-	;;
-	br)
-	build && run
-	;;
-	bash)
-	additionalparams="--entrypoint /bin/bash"
-	run
-	;;
-	*)
-	echo "unbekanntes Kommando: $1"
-	;;
-esac
+while true; do
+        ret=0
+        xfreerdp /u:${guiuser} /p:${guipass} /f /rfx /sound /v:localhost:33890 || ret=$?
+# +clipboard 
+        if [ "$ret" -eq "0"  ] ||  [ "$ret" -eq "12"  ]; then break; fi
+        sleep 1
+done
 
-
-
+docker-compose down

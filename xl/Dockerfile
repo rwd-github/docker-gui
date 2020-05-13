@@ -15,7 +15,7 @@ RUN apt-get update && apt-get upgrade -y -q \
 	gnome-mahjongg \
 	gnome-mines \
 	unattended-upgrades \
-	&& apt-get clean
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades
 

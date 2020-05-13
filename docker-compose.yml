@@ -1,0 +1,45 @@
+version: '3.5'
+services:
+  gui:
+    image: rwd1/gui
+    build: .
+    container_name: gui
+#    restart: always
+    restart: "no"
+    volumes:
+      - ./home:/home
+#      - /dev/shm:/dev/shm
+    shm_size: 1gb
+    ports:
+      - "33890:3389"
+
+  gui-l:
+    image: rwd1/gui-l
+    build: ./l
+    depends_on:
+      - gui
+    container_name: gui-l
+#    restart: always
+    restart: "no"
+    volumes:
+      - ./home:/home
+#      - /dev/shm:/dev/shm
+    shm_size: 1gb
+    ports:
+      - "33891:3389"
+
+  gui-xl:
+    image: rwd1/gui-xl
+    build: ./xl
+    depends_on:
+      - gui-l
+    container_name: gui-xl
+    restart: always
+    restart: "no"
+    volumes:
+      - ./home:/home
+#      - /dev/shm:/dev/shm
+    shm_size: 1gb
+    ports:
+      - "33892:3389"
+

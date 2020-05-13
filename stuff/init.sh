@@ -1,5 +1,19 @@
 #!/bin/bash
-rm /etc/rc5.d/*supervisor
+
+disable_some_daemons(){
+	pushd /etc/rc5.d
+	rm *supervisor
+#	rm *apport
+#	rm *saned
+#	rm *lightdm
+#	rm *gdm3
+#	rm *avahi-daemon
+#	rm *plymouth
+	popd
+}
+
+disable_some_daemons || true
+
 set -o errexit -o pipefail -o nounset
 
 cd /root
@@ -9,8 +23,14 @@ fi
 
 rm /var/run/xrdp/*.pid || true
 
-rm /usr/bin/chromium-browser
-cp /usr/bin/chromium-browser--no-sandbox /usr/bin/chromium-browser
+setChromium() {
+	if [ -f /usr/bin/chromium-browser ]; then
+		rm /usr/bin/chromium-browser
+		cp /usr/bin/chromium-browser--no-sandbox /usr/bin/chromium-browser
+	fi
+}
+
+setChromium
 
 # Start all
 run-parts -a start /etc/rc5.d
@@ -34,8 +54,7 @@ stop_script() {
 # Wait for supervisor to stop script
 trap stop_script SIGINT SIGTERM
 
-rm /usr/bin/chromium-browser
-cp /usr/bin/chromium-browser--no-sandbox /usr/bin/chromium-browser
+setChromium
 
 while true
 do

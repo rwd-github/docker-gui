@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as sysbase
+FROM ubuntu:20.04 as gui-textonly
 
 # Set the locale
 RUN apt-get update \
@@ -28,48 +28,53 @@ RUN apt-get update && apt-get upgrade -y \
 	supervisor \
 	python3-pip \
 	curl \
+	whois \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN unlink /etc/localtime \
+	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
+RUN mkdir -p /var/log/supervisor \
+			/etc/supervisor/conf.d/
+
+
+FROM gui-textonly as gui-base
+RUN apt-get update && apt-get upgrade -y \
+	&& apt-get install -y -q \
 	xorgxrdp \
 	xrdp \
 	xfce4 \
 	xfce4-goodies \
 	xfce4-terminal \
-	xfwm4-themes \
 	shiki-colors-xfwm-theme \
 	firefox \
 	firefox-locale-de \
 	firefox-locale-en \
-	chromium-browser \
 	remmina \
 	freerdp2-x11 \
 	fonts-hack-ttf \
 	xterm \
 	clusterssh \
 	doublecmd-qt \
-	&& apt-get clean
+	&& apt-get clean && rm -rf /var/lib/apt/lists/* \
+	&& usermod -a -G ssl-cert xrdp
 
-RUN unlink /etc/localtime \
-	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-	
-RUN usermod -a -G ssl-cert xrdp
+#	xfwm4-themes \
+#	chromium-browser \
 
-RUN mv /usr/bin/chromium-browser /usr/bin/chromium-browser.original
-ADD chromium-browser /usr/bin/chromium-browser
-RUN chmod +x /usr/bin/chromium-browser \
-	&& cp /usr/bin/chromium-browser /usr/bin/chromium-browser--no-sandbox
-ADD chromium-nosandbox.desktop /usr/share/xfce4/helpers/
 
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
-
-RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /etc/supervisor/conf.d/
-COPY supervisord.conf /root/supervisord.conf
-
-
-FROM sysbase
-ADD createuser.sh /root/createuser.sh
-RUN chmod +x /root/createuser.sh
-ADD init.sh /root/init.sh
-RUN chmod +x /root/init.sh
 ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
+
+
+FROM gui-base
+COPY stuff/ /root/
+RUN chmod +x /root/*.sh
+
+### Chromiumstuff
+RUN chmod +x /root/chromium/install.sh && /root/chromium/install.sh \
+	&& apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN chmod +x /root/chromium/mklink.sh && /root/chromium/mklink.sh
+
 
