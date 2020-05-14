@@ -65,7 +65,6 @@ RUN apt-get update && apt-get upgrade -y \
 
 VOLUME [ "/home" ]
 EXPOSE 3389/tcp
-ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
 
 
 FROM gui-base
@@ -78,3 +77,4 @@ RUN chmod +x /root/chromium/install.sh && /root/chromium/install.sh \
 RUN chmod +x /root/chromium/mklink.sh && /root/chromium/mklink.sh
 
 
+ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
