@@ -2,7 +2,7 @@ version: '3.5'
 services:
   gui:
     image: rwd1/gui
-#    build: .
+    build: .
     container_name: gui
 #    restart: always
     restart: "no"
@@ -12,6 +12,7 @@ services:
     shm_size: 1gb
     ports:
       - "33890:3389"
+#    entrypoint: ["/root/init.sh"]
 
 #  gui-l:
 #    image: rwd1/gui-l

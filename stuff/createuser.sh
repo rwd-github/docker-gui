@@ -4,28 +4,32 @@ set -o errexit -o pipefail -o nounset
 echo "===  createuser start"
 for myuser in $(ls /home); do
 	echo "---  add user ${myuser}"
-	if [ ! $(id -u ${myuser}) ]; then
-		adduser --disabled-password --no-create-home --gecos "" ${myuser}
-		pushd /home/${myuser}
-		if [ -f .mypass ]; then
-			mypass=$(cat .mypass)
+	if [ ! $(id -u ${myuser} 2>/dev/null) ]; then
+		pushd /home/${myuser} >/dev/null
+		if [ -f .myuser ]; then
+			. ./.myuser
+			addgroup --gid ${gid} ${myuser}
+			adduser --uid ${uid} --gid ${gid} \
+				--disabled-password \
+				--no-create-home --gecos "" ${myuser}
 
-			#echo ${myuser}:${mypass} | chpasswd
-			usermod -p "${mypass}" ${myuser}
+			usermod -p "${pass}" ${myuser}
+			# add groups
+			for gr in ${groups}; do
+				usermod -a -G ${gr} ${myuser}
+			done
+			olduid=$(stat -c '%u' .myuser)
+			oldgid=$(stat -c '%g' .myuser)
+			chown -R ${uid}:${gid} .
+			chown ${olduid}:${oldgid} .myuser
 		else
 			echo " no password found"
 		fi
-		usermod -a -G adm ${myuser}
-		usermod -a -G sudo ${myuser}
 
-		chown -R ${myuser}:${myuser} .
-#		chmod -R go=u,go-w .
-#		chmod go= .
-		popd
+		popd >/dev/null
 	else
 		echo "  user already exists."
 	fi
 done
 echo "===  createuser stop"
 
-#rm $0
