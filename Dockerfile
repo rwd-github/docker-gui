@@ -34,8 +34,8 @@ RUN apt-get update && apt-get upgrade -y \
 RUN unlink /etc/localtime \
 	&& ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
-#RUN mkdir -p /var/log/supervisor \
-#			/etc/supervisor/conf.d/
+RUN mkdir -p /var/log/supervisor \
+			/etc/supervisor/conf.d/
 
 
 FROM gui-textonly as gui-base
@@ -77,5 +77,4 @@ RUN chmod +x /root/chromium/install.sh && /root/chromium/install.sh \
 RUN chmod +x /root/chromium/mklink.sh && /root/chromium/mklink.sh
 
 
-#ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
-ENTRYPOINT [ "/root/init.sh" ]
+ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
