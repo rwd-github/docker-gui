@@ -1,7 +1,7 @@
 #!/bin/bash
 set -o errexit -o pipefail -o nounset
 
-mypath=$(dirname $0)
+mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 orig=chromium
 

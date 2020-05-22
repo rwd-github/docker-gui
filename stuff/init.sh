@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
 disable_some_daemons(){
 	pushd /etc/rc5.d
 	rm *supervisor
@@ -16,7 +18,7 @@ disable_some_daemons || true
 
 set -o errexit -o pipefail -o nounset
 
-cd /root
+cd ${mypath}
 if [ -f "createuser.sh" ]; then
 	./createuser.sh
 fi

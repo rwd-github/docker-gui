@@ -68,13 +68,13 @@ EXPOSE 3389/tcp
 
 
 FROM gui-base
-COPY stuff/ /root/
-RUN chmod +x /root/*.sh
+COPY stuff/ /stuff/
+RUN chmod +x /stuff/*.sh
 
 ### Chromiumstuff
-RUN chmod +x /root/chromium/install.sh && /root/chromium/install.sh \
+RUN chmod +x /stuff/chromium/install.sh && /stuff/chromium/install.sh \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN chmod +x /root/chromium/mklink.sh && /root/chromium/mklink.sh
+RUN chmod +x /stuff/chromium/mklink.sh && /stuff/chromium/mklink.sh
 
 
-ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/root/supervisord.conf" ]
+ENTRYPOINT [ "/usr/bin/supervisord", "-c", "/stuff/supervisord.conf" ]

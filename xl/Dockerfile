@@ -16,6 +16,7 @@ RUN apt-get update && apt-get upgrade -y -q \
 	gnome-mines \
 	apt-transport-https \
 	unattended-upgrades \
+	seahorse \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades

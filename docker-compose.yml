@@ -12,7 +12,7 @@ services:
     shm_size: 1gb
     ports:
       - "33890:3389"
-#    entrypoint: ["/root/init.sh"]
+#    entrypoint: ["/stuff/init.sh"]
 
 #  gui-l:
 #    image: rwd1/gui-l

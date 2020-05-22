@@ -1,8 +1,7 @@
 #!/bin/bash
 set -o errexit -o pipefail -o nounset
 
-mypath=$(dirname $0)
-
+mypath=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 cp ${mypath}/debian.list /etc/apt/sources.list.d/debian.list
 cp ${mypath}/chromium.pref /etc/apt/preferences.d/chromium.pref
