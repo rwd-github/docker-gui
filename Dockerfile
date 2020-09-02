@@ -56,6 +56,9 @@ RUN apt-get update && apt-get upgrade -y \
 	xterm \
 	clusterssh \
 	doublecmd-qt \
+	espeak \
+	glogg \
+	idle3 \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* \
 	&& usermod -a -G ssl-cert xrdp
 
