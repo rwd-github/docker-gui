@@ -29,6 +29,7 @@ RUN apt-get update && apt-get upgrade -y \
 	python3-pip \
 	curl \
 	whois \
+	ecryptfs-utils \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN unlink /etc/localtime \

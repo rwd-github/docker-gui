@@ -12,23 +12,26 @@ services:
     shm_size: 1gb
     ports:
       - "33890:3389"
+#    privileged: true
 #    entrypoint: ["/stuff/init.sh"]
 
-#  gui-l:
-#    image: rwd1/gui-l
-##    build: ./l
-#    depends_on:
-#      - gui
-#    container_name: gui-l
-##    restart: always
-#    restart: "no"
-#    volumes:
-#      - ./home:/home
-##      - /dev/shm:/dev/shm
-#    shm_size: 1gb
-#    ports:
-#      - "33891:3389"
-#
+  gui-l:
+    image: rwd1/gui-l
+    build: ./l
+    depends_on:
+      - gui
+    container_name: gui-l
+#    restart: always
+    restart: "no"
+    volumes:
+      - ./home:/home
+#      - /dev/shm:/dev/shm
+    shm_size: 1gb
+    ports:
+      - "33891:3389"
+      - "8022:22"
+#    privileged: true
+
 #  gui-xl:
 #    image: rwd1/gui-xl
 ##    build: ./xl
