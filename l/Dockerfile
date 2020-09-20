@@ -9,6 +9,7 @@ RUN apt-get update && apt-get upgrade -y -q \
 	vlc \
 	geany \
 	geany-plugins \
+	actiona \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 22/tcp
