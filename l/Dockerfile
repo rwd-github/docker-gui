@@ -4,6 +4,7 @@ RUN apt-get update && apt-get upgrade -y -q \
 	&& apt-get install -y -q \
 	openssh-server \
 	git git-gui \
+	git-cola \
 	keepassxc \
 	evince \
 	vlc \
