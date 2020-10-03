@@ -58,6 +58,7 @@ RUN apt-get update && apt-get upgrade -y \
 	clusterssh \
 	doublecmd-qt \
 	espeak \
+	catfish \
 	glogg \
 	idle3 \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* \
