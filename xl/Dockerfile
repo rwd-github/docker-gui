@@ -17,6 +17,7 @@ RUN apt-get update && apt-get upgrade -y -q \
 	apt-transport-https \
 	unattended-upgrades \
 	seahorse \
+	k3b \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN sed -i 's/\/\/\t\(...distro_id\)/\1/g' /etc/apt/apt.conf.d/50unattended-upgrades
